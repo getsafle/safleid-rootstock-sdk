@@ -6,8 +6,6 @@ Anyone can use this for SafleId Resolution.
 
 For now the registrar process is manual, if you want to become one, drop us an email or engage on our social media channels. We will be making it democratic and decentralized soon, it's already in the smart contracts [Hint: You can build on it by yourself too!].
 
-> **Disclaimer - This is WIP, and release in alpha.**
-
 ## Clone the repository
 
 > Clone
@@ -22,7 +20,7 @@ Import the package into your project using,
 
 > Initialising
 
-Initialise the constructor using your Infura secret key or RPC URL like this,
+Initialise the constructor using your rootstock RPC URL like this,
 
 `const safleID = new SafleID(env, rpcUrl);`
 
