@@ -8,34 +8,32 @@ For now the registrar process is manual, if you want to become one, drop us an e
 
 > **Disclaimer - This is WIP, and release in alpha.**
 
-## Installation and Usage
+## Clone the repository
 
-> Installation
+> Clone
 
-Install the package by running the command,
+Clone the repo by running the command,
 
-`npm install @getsafle/safleid-rootstock-sdk`
+`git clone https://github.com/getsafle/safleid-rootstock-sdk.git`
 
 Import the package into your project using,
 
-`const safleId = require('@getsafle/safleid-rootstock-sdk').SafleID;`
+`const { SafleID } = require("./src/index");`
 
 > Initialising
 
 Initialise the constructor using your Infura secret key or RPC URL like this,
 
-`const safle = new safleId(env, rpcUrl);`
+`const safleID = new SafleID(env, rpcUrl);`
 
 - `env` - The network to perform the blockchain queries. (valid values - `mainnet` or `testnet`).
 - `rpcUrl` - RPC URL for the specified network env.
 
 ### List of all functions
 
-> Set SafleId
+# Set SafleId
 
----
-
-- `setSafleId()`
+## `setSafleId()`
 
 #### Inputs
 
@@ -44,15 +42,24 @@ Initialise the constructor using your Infura secret key or RPC URL like this,
 `from` - Address of the registrar.
 `privateKey` - Private Key of the registrar.
 
+### Sample function call
+
+```
+const response = await safleID.setSafleId({
+  userAddress: userAddress,
+  safleId,
+  from: registrarAddress,
+  privateKey, // registrar's private key
+});
+```
+
 #### Output
 
 Transaction details.
 
-> Update SafleId
+# Update SafleId
 
----
-
-- `updateSafleId()`
+## `updateSafleId()`
 
 #### Inputs
 
@@ -61,19 +68,34 @@ Transaction details.
 `from` - Address of the registrar.
 `privateKey` - Private Key of the registrar.
 
+### Sample function call
+
+```
+const response =  await safleID.updateSafleId({
+   userAddress: userAddress,
+   newSafleId,
+   from: registrarAddress,
+   privateKey, // registrar's private key
+});
+```
+
 #### Output
 
 Transaction details.
 
-> Check if SafleId registration is paused,
+# Check if SafleId registration is paused,
 
----
-
-- `isRegistrationPaused()`
+## `isRegistrationPaused()`
 
 #### Inputs
 
 No inputs.
+
+### Sample function call
+
+```
+const isRegistrationPaused = await safleID.isRegistrationPaused();
+```
 
 #### Output
 
@@ -84,11 +106,17 @@ If registration is not paused - `false`
 
 ---
 
-- `getUpdateCount()`
+# `getUpdateCount()`
 
 #### Input
 
 `address` - Address of the user to check the SafleId update count.
+
+### Sample function call
+
+```
+ const updateCount = await safleID.getUpdateCount(address);
+```
 
 #### Output
 
@@ -99,89 +127,72 @@ If invalid or wrong address - `Invalid address.`
 
 ---
 
-- `getSafleId()`
+# `getSafleId()`
 
 #### Input
 
 `userAddress` - Address of the user to get the SafleId.
+
+### Sample function call
+
+```
+ const safleId = await safleID.getSafleId(userAddress);
+```
 
 #### Output
 
 SafleId of the user
 If invalid or wrong address - `Invalid address.`
 
-> Retrieve the address of a particular SafleId
+# Retrieve the address of a particular SafleId
 
----
-
-- `getAddress()`
+## `getAddress()`
 
 #### Input
 
 `safleId` - SafleId of the user to get the address.
 
+```
+  const address = await safleID.getAddress(safleId);
+```
+
 #### Output
 
 Address of the user.
 
-> Get the current SafleId registration fees
+# Get the current SafleId registration fees
 
----
+## `safleIdFees()`
 
-- `safleIdFees()`
+#### Inputs
+
+No inputs.
+
+### Sample function call
+
+```
+ const fees = await safleID.safleIdFees();
+```
 
 #### Output
 
 SafleId registration fees.
 
-> Resolve old safleIds of a user
+# Resolve old safleIds of a user
 
----
-
-- `resolveOldSafleId()`
+## `resolveOldSafleId()`
 
 #### Input
 
 `address` - Address of the user.
 `index` - Index of the old SafleId.
 
+### Sample function call
+
+```
+const oldSafleId = await safleID.resolveOldSafleId(address, index);
+```
+
 #### Output
 
 Old safleId of the user at that index.
-
-> Resolve safleId from coin address
-
----
-
-- `coinAddressToSafleId()`
-
-#### Input
-
-`coinAddress` - Coin address of the user.
-
-#### Output
-
-safleId mapped to that coin address
-
-> Resolve coin address from safleId and chainId
-
----
-
-- `safleIdToCoinAddress()`
-
-#### Input
-
-`safleId` - SafleId of the user.
-`chainId` - ChainId of the chain for which the address has to be resolved.
-
-#### Output
-
-Coin address for that particular safleId and chainId.
-
-## WIP
-
-Want to contribute, we would :heart: that!
-
-We are a Global :earth_asia::earth_africa::earth_americas: team! :muscle:
-
-Write to dev@getsafle.com, or follow us on twitter, [https://twitter.com/getsafle](https://twitter.com/getsafle)

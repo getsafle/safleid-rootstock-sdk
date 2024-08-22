@@ -18,7 +18,7 @@ describe("RegistrarMain Contract", () => {
   let registrarFees = 0;
   let registrarName;
   let privateKey =
-    "0dd5d81a809ec95e812614d3056c88ec130bbb76f5a4b2327f79a435c321be4c";
+    "0dd5d81a809ec95e812614d3056c88ec130bbb76f5a4b2327f79a435c321be4c"; // Owner's private key
   beforeAll(async () => {
     web3 = new Web3(
       "https://rpc.testnet.rootstock.io/FhQhYq1qYdhhMQiTiGNZ2vSdxfbGY7-T"
@@ -37,38 +37,16 @@ describe("RegistrarMain Contract", () => {
       storageContractABI,
       STORAGE_CONTRACT_ROOTSTOCK_TESTNET
     );
-    owner = "0x70C1c4FDeB25aB45a1efa2500978F1A905EbBB85"; // Get the test accounts
+    owner = "0x70C1c4FDeB25aB45a1efa2500978F1A905EbBB85"; // Owner is registered as registrar for the deployed testnet contract
     user = "0x15a377087494C63aD58dA0e78510Acbe003c6D13";
     user1 = "0x39a12270a22082169945dCD059BEA67D6A6Ed874";
 
     registrarName = "myregistrar";
-
-    //----------------If you want to register a registrar (will set owner as a registrar for below)----//
-
-    // const tx = await mainContract.methods
-    //   .registerRegistrar(registrarName)
-    //   .encodeABI();
-    // const gas = await mainContract.methods
-    //   .registerRegistrar(registrarName)
-    //   .estimateGas({
-    //     from: owner,
-    //     value: registrarFees,
-    //   });
-
-    // const rawTx = {
-    //   to: MAIN_CONTRACT_ROOTSTOCK_TESTNET,
-    //   data: tx,
-    //   gas: gas,
-    //   value: registrarFees,
-    //   from: owner,
-    //   chainId: CHAIN_ID_ROOTSTOCK_TESTNET,
-    // };
-
-    // const signedTx = await web3.eth.accounts.signTransaction(rawTx, privateKey);
-    // const receipt = await web3.eth.sendSignedTransaction(
-    //   signedTx.rawTransaction
-    // );
   });
+
+  /**
+   * Uncomment the below register and update safle Id tests with new user addresse's and safle Ids for them to succeed
+   */
   test("Register Safle ID", async () => {
     // Register a new Safle ID
     // const safleId = "husiennew123";
