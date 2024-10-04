@@ -53,7 +53,7 @@ async function sendTransaction(payload) {
       from,
       chainId: CHAIN_ID,
     };
-    console.log(rawTx);
+
     const signedTx = await web3.eth.accounts.signTransaction(rawTx, privateKey);
 
     let response;
@@ -157,7 +157,7 @@ class SafleID {
       const userSafleID = await StorageContract.methods
         .resolveUserAddress(userAddress)
         .call();
-      console.log(userSafleID != "", "userSafleID");
+
       if (userSafleID != "") {
         return userSafleID;
       } else {
@@ -183,13 +183,12 @@ class SafleID {
         userAddress = await StorageContract.methods
           .resolveSafleId(safleID)
           .call();
-        console.log(userAddress);
+
         return userAddress;
       } catch (error) {
         return "0x0000000000000000000000000000000000000000";
       }
     } catch (error) {
-      console.log(error);
       return errorMessage.SAFLE_ID_NOT_REGISTERED;
     }
   }
